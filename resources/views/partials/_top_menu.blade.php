@@ -5,7 +5,7 @@
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
-        <a class="active item">Nová zakázka</a>
+        <a href="/zakazka/new" class="active item">Nová zakázka</a>
         <div class="right item">
           <div class="ui feed">
             <div class="event">

@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Login;
+use App\Http\Controllers\ZakazkyController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +20,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome',
 ['siteName' => 'HomePage : František']);
-});
+})->middleware('auth');
 
 Route::get ('zakazka/new', function(){
     return view('zakazka_new',
     ['siteName' => 'Nová zakázka : František']);
+})->middleware('auth');
+
+Route::get ('login', function(){
+    return view('login',
+    ['siteName' => 'Přihlášení : František']);
+})->name('login');
+
+Route::post ('login', [Login::class, 'autenticate'])->name('login.post');
+Route::get ('logout', [Login::class, 'logout'])->name('logout');
+
+Route::get('zakazky', [ZakazkyController::class, 'index']);
+
+Route::get('users', function(){
+    return response::json([
+
+    ]);
 });
 

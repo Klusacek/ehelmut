@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="cs">
 <head>
   <!-- Meta -->
   <meta charset="utf-8" />

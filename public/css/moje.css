@@ -1,3 +1,15 @@
 .siteContent {
     height: 80%;
 }
+
+/* login formulář */
+.login .column {
+    max-width: 450px;
+  }
+ .login .grid {
+    height: 100%;
+  }
+ .login .image {
+    margin-top: -100px;
+    padding-bottom: 20px;
+  }  
