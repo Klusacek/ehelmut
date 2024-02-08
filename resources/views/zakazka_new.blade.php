@@ -1,15 +1,15 @@
 @extends('layout')
 
 @section('content')
-@csrf
 
-    <form class="ui form">
+<form class="ui form" method="POST">
+        @csrf
     <h4 class="ui dividing header">Informace o zákazníkovi</h4>
     <div class="field">
             <label>Firma</label>
             <div class="three fields">
             <div class="field">
-                <input type="text" name="company" placeholder="Firma">
+                <input type="text" name="firma" placeholder="Firma">
             </div>
             <div class="field">
                 <input type="text" name="ico" placeholder="Ičo">
@@ -71,4 +71,14 @@
         </div>
             <button class="ui blue button" type="submit">Odeslat zakázku</button>
     </form>
+
+    @if ($errors->any())
+                  <div class="ui error message">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>   
+    @endif
 @endsection

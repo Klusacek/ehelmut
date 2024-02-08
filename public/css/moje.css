@@ -1,5 +1,6 @@
 .siteContent {
-    height: 80%;
+   height: 88vh;  /* todo: upravit toto není správně msí si to vzít jen spodfej screenu */
+    
 }
 
 /* login formulář */

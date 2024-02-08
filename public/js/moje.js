@@ -22,8 +22,24 @@ $(document)
    // povolit DropDovn ve formuláři
    $('.ui.dropdown')
     .dropdown()
+    ;
+    // moje zakazky folmulár se odesle po kliknutí na lupu
+  $('.search.link.icon')
+    .on("click", function () {
+      $("#hledejZakazku").submit();
+    })  
+    ;
+  
+  
 
 
 
+
+
+
+
+
+
+// poslední zavorka
 })
 ;

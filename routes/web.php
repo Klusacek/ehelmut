@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Login;
-use App\Http\Controllers\ZakazkyController;
+use App\Http\Controllers\CustomerOrderController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
@@ -22,10 +22,6 @@ Route::get('/', function () {
 ['siteName' => 'HomePage : František']);
 })->middleware('auth');
 
-Route::get ('zakazka/new', function(){
-    return view('zakazka_new',
-    ['siteName' => 'Nová zakázka : František']);
-})->middleware('auth');
 
 Route::get ('login', function(){
     return view('login',
@@ -35,11 +31,12 @@ Route::get ('login', function(){
 Route::post ('login', [Login::class, 'autenticate'])->name('login.post');
 Route::get ('logout', [Login::class, 'logout'])->name('logout');
 
-Route::get('zakazky', [ZakazkyController::class, 'index']);
+Route::get('zakazky', [CustomerOrderController::class, 'index'])->middleware('auth')->name('zakazkyList');
+Route::post ('zakazky',[CustomerOrderController::class, 'find'])->middleware('auth');
+Route::get ('zakazka/new', [CustomerOrderController::class, 'new'])->middleware('auth');
+Route::post ('zakazka/new', [CustomerOrderController::class, 'store'])->middleware('auth');
 
-Route::get('users', function(){
-    return response::json([
+Route::get ('zakazka/detail', [CustomerOrderController::class, 'store'])->middleware('auth');
 
-    ]);
-});
+
 

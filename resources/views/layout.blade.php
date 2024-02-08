@@ -27,9 +27,9 @@
 <div class="pusher">
     
     @include('partials._top_menu')
-    @include('partials._breadcrumb')
     <div class="siteContent ui container">
-        @yield('content')
+      @include('partials._breadcrumb')
+      @yield('content')
     </div>
 
 

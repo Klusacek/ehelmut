@@ -14,7 +14,7 @@
                 </div>
                 <div class="content">
                   <div class="summary">
-                     <a>Ivana Vokurková</a> 
+                     <a>{{ Auth::user()->jmeno }} {{ Auth::user()->prijmeni }}</a> 
                  </div>
                 </div>
             </div> 

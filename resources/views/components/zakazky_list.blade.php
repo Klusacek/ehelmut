@@ -2,6 +2,10 @@
 <h3 class="ui header">Zakázky prodejce Klusáček - Otevřené</h3>
 <table class="ui celled table">
   <thead>
+    <tr>
+      <th coolspan="7"></th>
+      <th></th>
+    </tr>
     <tr><th>Zakázka</th>
     <th>Jméno</th>
     <th>Dny</th>

@@ -40,7 +40,7 @@
                       <div class="field">
                         <div class="ui left icon input">
                           <i class="user icon"></i>
-                          <input type="text" name="email" placeholder="E-mail" value={{old('email')}}>
+                          <input type="text" name="email" placeholder="E-mail" value="{{old('email')}}">
                         </div>
                       </div>
                       <div class="field">
