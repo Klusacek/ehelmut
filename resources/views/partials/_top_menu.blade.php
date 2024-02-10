@@ -1,6 +1,6 @@
 
 <div class="ui inverted segment">
-    <div class="ui container">
+    <div class="ui fluid container">
       <div class="ui large secondary inverted pointing menu">
         <a class="toc item">
           <i class="sidebar icon"></i>

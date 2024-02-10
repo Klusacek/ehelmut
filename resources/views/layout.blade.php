@@ -27,7 +27,7 @@
 <div class="pusher">
     
     @include('partials._top_menu')
-    <div class="siteContent ui container">
+    <div class="siteContent ui fluid container">
       @include('partials._breadcrumb')
       @yield('content')
     </div>
@@ -35,14 +35,14 @@
 
 
 {{-- footer --}}
-  <div class="ui inverted vertical footer segment">
+  {{-- <div class="ui inverted vertical footer segment">
     <div class="ui container">
       <div class="ui stackable inverted divided equal height stackable grid">
       <h3>František -  {{ date('d-m-Y',time())}}</h3>
 
       </div>
     </div>
-  </div>
+  </div> --}}
 {{-- end footer --}}
 </div>
 

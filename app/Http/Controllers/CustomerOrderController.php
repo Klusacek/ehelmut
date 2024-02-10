@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomerContact;
 use App\Models\CustomerOrder;
 use Faker\Core\DateTime;
 use Illuminate\Http\Request;
@@ -83,5 +84,16 @@ class CustomerOrderController extends Controller
         ]);
     }
 
+   function detail($id) {
+        $kontakt    = CustomerOrder::find($id);
+        $detail     = CustomerContact::find($id) ; 
+
+    return view ('zakazka_detail', [
+        'siteName' => 'Detail zakázky 23 432 00 : František',
+        'kontakt'   => $kontakt,
+        'detail'    => $detail
+    ]);
+   }
+   
     // poslední zavorka
 }

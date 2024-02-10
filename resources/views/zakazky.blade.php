@@ -43,7 +43,7 @@
   @foreach ($zakazky as $zakazka)
     <tr>
         <td data-label="Name">{{\Carbon\Carbon::parse($zakazka->cas)->format('d.m.Y')}}</td>
-        <td data-label="Age"><a href="">{{$zakazka->orderNum}}</a></td>
+        <td data-label="Age"><a href="/zakazka/detail/{{$zakazka->id}}">{{$zakazka->orderNum}}</a></td>
         <td data-label="Job">{{$zakazka->oznaceni}}</td>
         <td>{{$zakazka->oznaceni}}</td>
         <td>{{$zakazka->email}}</td>
