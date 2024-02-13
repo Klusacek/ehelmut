@@ -7,41 +7,41 @@
             <div class="ui segment">
             <form class="ui form" action="/zakazka/upravit_kontakt" method="POST" name="editContact" id="editContact">
                 @csrf
-                <input type="hidden" name='id' value="{{$kontakt->id}}">
+                <input type="hidden" name='id' value="{{$order->id}}">
                 <div class="four fields">
                     <div class="field">
-                        <input type="text" name="firma" placeholder="firma" value="{{$detail->firma ??''}}">
+                        <input type="text" name="firma" placeholder="firma" value="{{$kontakt->firma ??''}}">
                     </div>
                     <div class="field">
-                        <input type="text" name="ico" placeholder="ico" value="{{$detail->ico ??''}}">
+                        <input type="text" name="ico" placeholder="ico" value="{{$kontakt->ico ??''}}">
                     </div>
                     <div class="field">
-                        <input type="text" name="dic" placeholder="dic" value="{{$detail->dic ??''}}">
+                        <input type="text" name="dic" placeholder="dic" value="{{$kontakt->dic ??''}}">
                     </div>
                     </div>
                 <div class="four fields">
                     <div class="field">
-                        <input type="text" name="jmeno" placeholder="jmeno" value="{{$detail->jmeno ??''}}">
+                        <input type="text" name="jmeno" placeholder="jmeno" value="{{$kontakt->jmeno ??''}}">
                     </div>
                     <div class="field">
-                        <input type="text" name="prijmeni" placeholder="prijmeni" value="{{$detail->prijmeni ??'' ??''}}">
+                        <input type="text" name="prijmeni" placeholder="prijmeni" value="{{$kontakt->prijmeni ??'' ??''}}">
                     </div>
                     <div class="field">
-                        <input type="text" name="tel" placeholder="tel" value="{{$detail->tel ??''}}">
+                        <input type="text" name="tel" placeholder="tel" value="{{$kontakt->tel ??''}}">
                     </div>
                     <div class="field">
-                        <input type="text" name="email" placeholder="email" value="{{$detail->email ??''}}">
+                        <input type="text" name="email" placeholder="email" value="{{$kontakt->email ??''}}">
                     </div>
                 </div>
                 <div class="four fields">
                     <div class="field">
-                        <input type="text" name="ulice" placeholder="ulice" value="{{$detail->ulice ??''}}">
+                        <input type="text" name="ulice" placeholder="ulice" value="{{$kontakt->ulice ??''}}">
                     </div>
                     <div class="field">
-                        <input type="text" name="mesto" placeholder="mesto" value="{{$detail->mesto ??''}}">
+                        <input type="text" name="mesto" placeholder="mesto" value="{{$kontakt->mesto ??''}}">
                     </div>
                     <div class="field">
-                        <input type="text" name="psc" placeholder="psc" value="{{$detail->psc ??''}}">
+                        <input type="text" name="psc" placeholder="psc" value="{{$kontakt->psc ??''}}">
                     </div>
                 </div>
                 
@@ -68,9 +68,9 @@
    </div>
    <div class="content">
      <h4 class="ui sub header">
-        @if (isset($detail->firma))
-            Firma: {{ $detail->firma }}<br/>
-            IČO:{{ $detail->ico }} DIČ:{{ $detail->dic }}
+        @if (isset($kontakt->firma))
+            Firma: {{ $kontakt->firma }}<br/>
+            IČO:{{ $kontakt->ico }} DIČ:{{ $kontakt->dic }}
         @else
             
         @endif
@@ -80,11 +80,11 @@
          <div class="event">
              <div class="content">
                  <div class="summary">
-                    @if (isset($detail->jmeno))
-                     Kontakt: {{$detail->jmeno}}
+                    @if (isset($kontakt->jmeno))
+                     Kontakt: {{$kontakt->jmeno}}
                     @endif
-                    @if (isset($detail->jmeno))
-                      {{$detail->prijmeni}}
+                    @if (isset($kontakt->jmeno))
+                      {{$kontakt->prijmeni}}
                     @endif
            </div>
        </div>
@@ -92,12 +92,12 @@
    <div class="event">
        <div class="content">
            <div class="summary">
-            @if (isset($detail->tel))
-                     Telefon: {{$detail->tel}}
+            @if (isset($kontakt->tel))
+                     Telefon: {{$kontakt->tel}}
             @endif
             <br>
-            @if (isset($detail->email))
-                     Email: {{$detail->email}}
+            @if (isset($kontakt->email))
+                     Email: {{$kontakt->email}}
             @endif
                
            </div>
@@ -106,15 +106,15 @@
        <div class="event">
          <div class="content">
              <div class="summary">
-                @if (isset($detail->ulice))
-                     {{$detail->ulice}}
+                @if (isset($kontakt->ulice))
+                     {{$kontakt->ulice}}
                 @endif
                 <br>
-                @if (isset($detail->mesto))
-                     {{$detail->mesto}}
+                @if (isset($kontakt->mesto))
+                     {{$kontakt->mesto}}
                 @endif
-                @if (isset($detail->psc))
-                    , {{$detail->psc}}
+                @if (isset($kontakt->psc))
+                    , {{$kontakt->psc}}
                 @endif
                  
                </div>

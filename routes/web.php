@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\CustomerContactController;
+use App\Http\Controllers\Files;
 use App\Http\Controllers\Login;
-use App\Http\Controllers\CustomerOrderController;
-use App\Http\Controllers\XmlController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\XmlController;
 use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\CustomerOrderController;
+use App\Http\Controllers\CustomerContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +44,8 @@ Route::post ('zakazka/new', [CustomerOrderController::class, 'store'])->middlewa
 Route::get ('zakazka/detail/{id}', [CustomerOrderController::class, 'detail'])->middleware('auth')->name('zakazkaDetail');
 Route::post ('zakazka/upravit_kontakt', [CustomerContactController::class, 'update'])->middleware('auth');
 
-Route::get ('zakazka/xml', [XmlController::class, 'xmlToJson']);
+Route::get ('zakazka/xml/{id}', [XmlController::class, 'xmlToJson']);
+
+Route::post('upload', [UploadController::class, 'store'])->name('upload.store');
+
+Route::get('files/list/{id}', [Files::class, 'list']);

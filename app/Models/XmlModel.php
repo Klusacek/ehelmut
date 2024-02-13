@@ -11,6 +11,9 @@ class XmlModel extends Model
     use HasFactory;
     public function xmlToJson() {
         $xmlFile = simplexml_load_file('upload/xml.xml');
+        $json = json_encode($xmlFile);
+        $array = json_decode($json,TRUE);
 
-        return response()->json($xmlFile);
+        return $array;
+    }
 }

@@ -85,13 +85,13 @@ class CustomerOrderController extends Controller
     }
 
    function detail($id) {
-        $kontakt    = CustomerOrder::find($id);
-        $detail     = CustomerContact::find($id) ; 
+        $order    = CustomerOrder::find($id);
+        $kontakt     = CustomerContact::find($id) ; 
 
     return view ('zakazka_detail', [
-        'siteName' => 'Detail zakázky 23 432 00 : František',
-        'kontakt'   => $kontakt,
-        'detail'    => $detail
+        'siteName' => "Detail zakázky $order->orderNum : František",
+        'order'   => $order,
+        'kontakt'    => $kontakt
     ]);
    }
    

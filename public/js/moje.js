@@ -44,9 +44,16 @@ $(document)
   .modal('show')
   })
     ; 
-  
-  
 
+  //  otevřít formulář pro editaci kontaktu zákazníka
+  $('.dokumenty_button')
+  .on("click", function () {
+    var clickedButtonId = $(this).attr("id");
+      $("#filesLink").attr("data-url", "/files/list/"+clickedButtonId);
+      $('.dokumenty_list').modal('show');
+      $('.ui.embed').embed();
+      })
+    ; 
 
 
 

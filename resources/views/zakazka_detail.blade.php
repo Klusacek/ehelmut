@@ -5,10 +5,18 @@
     <div class="twelve wide column">
         <div class="ui cards">
         {{-- kontakt zakazky    --}}
-        <x-card_customer_contact :$kontakt :$detail></x-card_customer_contact>
+        <x-card_customer_contact :$kontakt :$order></x-card_customer_contact>
         {{-- adresa montáže --}}
         <x-card_customer_montage_address>   </x-card_customer_montage_address>
     </div>
+
+    <div class="ui modal dokumenty_list">
+      <i class="close icon"></i>
+      <div class="header">
+          Dokumenty
+      </div>
+        <div class="ui embed" id="filesLink" data-url="" ></div>
+    </div>    
 
     <div class="ui segment">
       
@@ -29,7 +37,6 @@
         <th>Uhrazeno</th>
         <th>Objednano</th>
         <th>Dodáno</th>
-        <th>Smlouva</th>
         <th>Dokumenty</th>
       </tr>
     </thead>
@@ -37,8 +44,8 @@
       
       <!-- výpis objednávek a doobjednavek včetne cen -->  
                <tr>
-             <td><a href="/objednavky/vypsat_zbozi/2406000/all">2406000</a></td>
-             <td><a href="/zakazky/prenos_dph/2406000/red" class="ui icon red button"><i class="industry icon"></i></a>
+             <td><a href="">{{$order->orderNum}}</a></td>
+             <td><a href="" class="ui icon red button"><i class="industry icon"></i></a>
               
              </td>
              <td>Štěpán</td>
@@ -68,8 +75,13 @@
              <td>2 000</td>
              <td><div class="ui indicating small progress objednano success" data-value="1" data-total="1" data-percent="100"><div class="bar" style="transition-duration: 300ms; width: 100%;"><div class="progress">100%</div></div><div class="label">1 z 1</div></div></td>
              <td><div class="ui indicating small progress objednano success" data-value="1" data-total="1" data-percent="100"><div class="bar" style="transition-duration: 300ms; width: 100%;"><div class="progress">100%</div></div><div class="label">1 z 1</div></div></td>
-            <td><button class="ui icon button"><i class="file word icon"></i></button></td>
-            <td><button class="ui icon button"><i class="folder open outline icon"></i></button></td>
+            <td>
+              <button class="ui labeled icon button dokumenty_button" id="{{$order->orderNum}}">
+                <i class="file alternate outline icon"></i>
+                Dokumenty
+              </button>
+            </td>
+            
             </tr>
             
       <tr>
@@ -77,7 +89,6 @@
         <td>Celkem</td>
         <td class="negative">3 103</td>
         <td class="positive">0</td>
-        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -103,7 +114,6 @@
           <th></th>
           <th></th>
           <th></th>
-          <th></th>
         </tr>
     </tfoot>
   </table>
@@ -122,4 +132,16 @@
     </div>
     </div>
 </div>
+@if(session('success'))
+    <div>
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div>
+        {{ session('error') }}
+    </div>
+@endif
+
 @endsection
