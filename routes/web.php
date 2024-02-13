@@ -46,6 +46,7 @@ Route::post ('zakazka/upravit_kontakt', [CustomerContactController::class, 'upda
 
 Route::get ('zakazka/xml/{id}', [XmlController::class, 'xmlToJson']);
 
-Route::post('upload', [UploadController::class, 'store'])->name('upload.store');
+// Smazat Route::post('upload', [UploadController::class, 'store'])->name('upload.store');
 
 Route::get('files/list/{id}', [Files::class, 'list']);
+Route::post('files/upload/{id}', [Files::class, 'store']);
