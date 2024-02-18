@@ -64,7 +64,7 @@
     
     <div class="ui card">
         <div class="content">
-     <div class="header">{{$kontakt->oznaceni}}</div>
+     <div class="header">{{$order->oznaceni}}</div>
    </div>
    <div class="content">
      <h4 class="ui sub header">

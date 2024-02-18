@@ -44,9 +44,9 @@ Route::post ('zakazka/new', [CustomerOrderController::class, 'store'])->middlewa
 Route::get ('zakazka/detail/{id}', [CustomerOrderController::class, 'detail'])->middleware('auth')->name('zakazkaDetail');
 Route::post ('zakazka/upravit_kontakt', [CustomerContactController::class, 'update'])->middleware('auth');
 
-Route::get ('zakazka/xml/{id}', [XmlController::class, 'xmlToJson']);
+//Route::get ('zakazka/xml/{id}', [XmlController::class, 'xmlToJson']);
 
 // Smazat Route::post('upload', [UploadController::class, 'store'])->name('upload.store');
 
-Route::get('files/list/{id}', [Files::class, 'list']);
-Route::post('files/upload/{id}', [Files::class, 'store']);
+Route::get('files/list/{orderNum}/{id}', [Files::class, 'list']);
+Route::post('files/upload', [Files::class, 'store']);

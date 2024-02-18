@@ -91,6 +91,7 @@ class CustomerOrderController extends Controller
     return view ('zakazka_detail', [
         'siteName' => "Detail zakázky $order->orderNum : František",
         'order'   => $order,
+        'id'  => $id,
         'kontakt'    => $kontakt
     ]);
    }
