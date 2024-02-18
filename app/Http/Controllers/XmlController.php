@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use SimpleXMLElement;
+
 use App\Models\XmlModel;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -67,4 +67,10 @@ class XmlController extends Controller
         
         return redirect()->route('zakazkaDetail', ['id' => $id]);
     }
+
+    function xmlImport($ordernum) {
+        $xmlImport    =   new XmlModel();
+        $data   =   $xmlImport->xmlData($ordernum);
+        
+}
 }

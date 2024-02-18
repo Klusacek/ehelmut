@@ -55,7 +55,8 @@ $(document)
       })
     ; 
 
-
+// progress bar objednano
+$('.objednano').progress();
 
 
 

@@ -19,38 +19,41 @@ class Files extends Controller
 
         ]);
        }
-
-
+       
+       
        public function store(Request $request)
-    {
-
-        
-        // $request->validate([
-        //     'file' => 'required|file|mimes:xml|max:20048', // Max velikost souboru 2 MB
-        // ]);
-        
-        if ($request->hasFile('file')) {
-            $file       =   $request->file('file');
-            $fileType   =   $request->file('file')->getMimeType();
-            $orderNum   =   $request->orderNum;
-            $id         =   $request->id;
-            $prefix     =   substr($orderNum,0,2);
-            $path       =   "public/uploads/$prefix/$orderNum";
-
-            // vytvořit adresar a podadresar není nutné . vytvoří to storage::put
-            //Storage::makeDirectory($path);
-
-            if ($fileType =="text/xml"){
-            // kotrola jestli lze nahrát XML. Tedy jestli je již zboží objednáno 
-            
-            // Storage::putFileAs($path, $file, 'xml.xml');
-            $path     =  $path."/xml";
-            $cestaXml =  Storage::put($path, $file);
-            $cestaXml    = str_replace("public","storage",$cestaXml);   //todo toto je nahrazeni public na storage natvrdo. Je potřeba to nastudovat, protože ctečka XML nedokáže přistupovat na public a potřebuje storage.
-            $data    = new XmlModel(); 
-            $kontakty = $data->kontakty("$cestaXml");
-            
-            // kontrola jestli je nahráváno  správné XML -> se správným číslem
+       {
+           
+           
+           // $request->validate([
+               //     'file' => 'required|file|mimes:xml|max:20048', // Max velikost souboru 2 MB
+               // ]);
+               
+               if ($request->hasFile('file')) {
+                   $file       =   $request->file('file');
+                   $fileType   =   $request->file('file')->getMimeType();
+                   $orderNum   =   $request->orderNum;
+                   $id         =   $request->id;
+                   $prefix     =   substr($orderNum,0,2);
+                   $path       =   "public/uploads/$prefix/$orderNum";
+                   
+                   // vytvořit adresar a podadresar není nutné . vytvoří to storage::put
+                   //Storage::makeDirectory($path);
+                   
+                   if ($fileType =="text/xml"){
+                       $data       =   new XmlModel(); 
+                       // kotrola jestli lze nahrát XML. Tedy jestli není již zboží objednáno 
+                       // kontrola jestli je nahráváno  správné XML -> se správným číslem
+                       $kontrola    =   $data -> xmlOrderNum_test($file, $orderNum);
+                       if($kontrola){
+                        //return redirect()->back()->with('error', $kontrola);
+                       };
+                       // Storage::putFileAs($path, $file, 'xml.xml');
+                       $path       =   $path."/xml";
+                       $cestaXml   =   Storage::put($path, $file);
+                       $cestaXml   =   str_replace("public","storage",$cestaXml);   //todo toto je nahrazeni public na storage natvrdo. Je potřeba to nastudovat, protože ctečka XML nedokáže přistupovat na public a potřebuje storage.
+                       $kontakty   =   $data->kontakty("$cestaXml");
+                       $itemsXml   =   $data->xmlData("$cestaXml");
                // Kontrola jestli existuje záznam v kontaktech a rozhodnití jestli přepsat
                $exist   = CustomerContact::find($id); 
                if(!$exist){
@@ -84,6 +87,8 @@ class Files extends Controller
         }
         return redirect()->back()->with('error', 'Nepodařilo se nahrát soubor.');
     }
+
+
 
    // posledni zavorka 
 }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\CustomerContactController;
+use App\Http\Controllers\CustomerOrderItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,5 @@ Route::post ('zakazka/upravit_kontakt', [CustomerContactController::class, 'upda
 
 Route::get('files/list/{orderNum}/{id}', [Files::class, 'list']);
 Route::post('files/upload', [Files::class, 'store']);
+
+Route::get('files/test', [CustomerOrderItemController::class, 'test']);

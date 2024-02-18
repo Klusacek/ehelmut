@@ -21,7 +21,7 @@
         <div class="ui segment">
           {{-- vypis jednotlivých zakázek a plateb --}}
             <p>Historie objednávek a jejich ceny včetně DPH [Uhrazeno:0%] </p>
-            <x-customer_order_detail :$order :$id></x-customer_order_detail>
+            <x-customer_order_detail :$order :$id :$ceny></x-customer_order_detail>
         </div>
     </div>
         {{-- poznámky --}}

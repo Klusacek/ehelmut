@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerContact;
-use App\Models\CustomerOrder;
+use App\Models\CenaOrderModel;
 use Faker\Core\DateTime;
 use Illuminate\Http\Request;
+use App\Models\CustomerOrder;
+use App\Models\CustomerContact;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerOrderController extends Controller
 {
 
-
+    
 
     public function index(){
         
@@ -85,14 +87,18 @@ class CustomerOrderController extends Controller
     }
 
    function detail($id) {
-        $order    = CustomerOrder::find($id);
-        $kontakt     = CustomerContact::find($id) ; 
+        $order          =   CustomerOrder::find($id);
+        $kontakt        =   CustomerContact::find($id) ; 
+        $cenyModel      =   new CenaOrderModel;
+        $ceny           =   $cenyModel->Sumarizace($order->orderNum);
+
 
     return view ('zakazka_detail', [
         'siteName' => "Detail zakázky $order->orderNum : František",
         'order'   => $order,
         'id'  => $id,
-        'kontakt'    => $kontakt
+        'kontakt'    => $kontakt,
+        'ceny' => $ceny
     ]);
    }
    

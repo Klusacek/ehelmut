@@ -3,60 +3,63 @@
 <table class="ui celled striped  table">
 <thead class="full-width">
   <tr>
-<th>Objednávka</th>
-<th>RPDP</th>
-<th style="width:120px;">Prodejce</th>
-<th>Středisko</th>
-<th style="width: 100px;">Založena</th>
-<th>Typ</th>
-<th style="width: 100px; text-align: left;">Cena Celkem</th>
-<th>Uhrazeno</th>
-<th>Objednano</th>
-<th>Dodáno</th>
-<th>Dokumenty</th>
-</tr>
+      <th>Objednávka</th>
+      <th>RPDP</th>
+      <th style="width:120px;">Prodejce</th>
+      <th>Středisko</th>
+      <th style="width: 100px;">Založena</th>
+      <th>Typ</th>
+      <th style="width: 100px; text-align: left;">Cena Celkem</th>
+      <th>Uhrazeno</th>
+      <th>Objednano</th>
+      <th>Dodáno</th>
+      <th>Dokumenty</th>
+  </tr>
 </thead>
 <tbody>
 
-<!-- výpis objednávek a doobjednavek včetne cen -->  
+<!-- výpis objednávek a doobjednavek včetnĚ cen -->  
        <tr>
      <td><a href="">{{$order->orderNum}}</a></td>
-     <td><a href="" class="ui icon red button"><i class="industry icon"></i></a>
-      
-     </td>
-     <td>Štěpán</td>
-     <td>Ateliér Harfa</td>
-     <td><a href="/zakazky/opravit_datum/2406000">2024-02-06 12:47:56</a></td>
-     <td>
-       <!--druhy objednavek -->
-       <form name="uravit_druh" action="../upravit_druh" method="POST">
-    <input type="hidden" name="id_zakazky" value="2406000">
-        <select name="druhy_zakazek_id" onchange="this.form.submit()">
-                              <option value="9" selected="">Ostatní</option>
-                              <option value="1">Zaměření</option>
-                              <option value="2">Instalace</option>
-                              <option value="3">Kuchyně</option>
-                              <option value="4">Skříně, Šatny</option>
-                              <option value="5">Obývák</option>
-                              <option value="6">Ložnice</option>
-                              <option value="7">Dětský pokoj</option>
-                              <option value="8">Inter. dveře</option>
-                              <option value="10">Návrh</option>
-                              <option value="11">Kompletní interiér</option>
-                              <option value="12">Spotřebiče</option>
-                            </select>         
-    </form>
-     </td>
-     <td> 3 103  </td>
-     <td>2 000</td>
-     <td><div class="ui indicating small progress objednano success" data-value="1" data-total="1" data-percent="100"><div class="bar" style="transition-duration: 300ms; width: 100%;"><div class="progress">100%</div></div><div class="label">1 z 1</div></div></td>
-     <td><div class="ui indicating small progress objednano success" data-value="1" data-total="1" data-percent="100"><div class="bar" style="transition-duration: 300ms; width: 100%;"><div class="progress">100%</div></div><div class="label">1 z 1</div></div></td>
-    <td>
-      <button class="ui labeled icon button dokumenty_button" id="{{$order->orderNum}}/{{$id}}">
-        <i class="file alternate outline icon"></i>
-        Dokumenty
-      </button>
-    </td>
+     <td><a href="" class="ui icon red button"><i class="industry icon"></i></a></td>
+     <td><a href="">Libor ŠTĚPÁN</a></td>
+     <td><a href="">Ateliér Harfa</a></td>
+     <td>{{\Carbon\Carbon::parse($order->cas)->format('d.m.Y')}}</td>
+     <td><a href="">Kuchyně</a></td>
+@if(isset($ceny))        
+         <td> {{$ceny->prodejDphSum}}  </td>
+         <td><a href="">20 000</a></td>
+         <td>
+          <div class="ui indicating small progress objednano success" 
+          data-value="{{$ceny->objednanoCount}}" 
+          data-total="{{$ceny->itemsCount}}" 
+          data-percent="{{$ceny->objednanoPerc}}">
+          <div class="bar" style="transition-duration: 300ms; width: 100%;">
+            <div class="progress">{{$ceny->objednanoPerc}} %</div>
+          </div>
+          <div class="label">{{$ceny->objednanoCount}} z {{$ceny->itemsCount}}</div>
+        </div>
+      </td>
+      <td><div class="ui indicating small progress objednano success" 
+        data-value="{{$ceny->vyskladnenoCount}}" 
+        data-total="{{$ceny->itemsCount}}" 
+        data-percent="{{$ceny->dodanoPerc}}">
+        <div class="bar" style="transition-duration: 300ms; width: 100%;">
+          <div class="progress">
+            {{$ceny->dodanoPerc}} %</div></div><div class="label">{{$ceny->dodakCount}} z {{$ceny->itemsCount}}</div>
+          </div>
+        </td>   
+@else
+      <td></td>
+      <td><a href="">Přidat platbu</a></td>
+      <td></td>
+      <td></td> 
+@endif
+      <td>
+        <button class="ui labeled icon button dokumenty_button" id="{{$order->orderNum}}/{{$id}}"><i class="file alternate outline icon"></i>
+          Dokumenty
+        </button>
+      </td>
     
     </tr>
     
