@@ -41,6 +41,7 @@ Route::post ('zakazky',[CustomerOrderController::class, 'find'])->middleware('au
 
 Route::get ('zakazka/new', [CustomerOrderController::class, 'new'])->middleware('auth');
 Route::post ('zakazka/new', [CustomerOrderController::class, 'store'])->middleware('auth');
+Route::post ('zakazka/poznamkaNew', [CustomerOrderController::class, 'poznamkaNew'])->middleware('auth');
 
 Route::get ('zakazka/detail/{id}', [CustomerOrderController::class, 'detail'])->middleware('auth')->name('zakazkaDetail');
 Route::post ('zakazka/upravit_kontakt', [CustomerContactController::class, 'update'])->middleware('auth');
@@ -49,7 +50,8 @@ Route::post ('zakazka/upravit_kontakt', [CustomerContactController::class, 'upda
 
 // Smazat Route::post('upload', [UploadController::class, 'store'])->name('upload.store');
 
-Route::get('files/list/{orderNum}/{id}', [Files::class, 'list']);
-Route::post('files/upload', [Files::class, 'store']);
+Route::get('files/list/{orderNum}/{id}', [Files::class, 'list'])->middleware('auth');
+Route::post('files/upload', [Files::class, 'store'])->middleware('auth');
+
 
 Route::get('files/test', [CustomerOrderItemController::class, 'test']);

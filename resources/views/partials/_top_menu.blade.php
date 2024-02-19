@@ -10,7 +10,7 @@
           <div class="ui feed">
             <div class="event">
                 <div class="label">
-                  <img src="{{ asset('/assets/images/avatar/helen.jpg') }}">
+                  <img src="{{ asset('/assets/images/avatar/') }}/{{ Auth::user()->id }}.jpg">
                 </div>
                 <div class="content">
                   <div class="summary">

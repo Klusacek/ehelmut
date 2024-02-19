@@ -46,7 +46,7 @@ class Files extends Controller
                        // kontrola jestli je nahráváno  správné XML -> se správným číslem
                        $kontrola    =   $data -> xmlOrderNum_test($file, $orderNum);
                        if($kontrola){
-                        //return redirect()->back()->with('error', $kontrola);
+                        return redirect()->back()->with('error', $kontrola);
                        };
                        // Storage::putFileAs($path, $file, 'xml.xml');
                        $path       =   $path."/xml";

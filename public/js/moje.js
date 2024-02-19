@@ -19,11 +19,14 @@ $(document)
     .sidebar('attach events', '.toc.item')
   ;
 
+  // nastavení tabular menu   
+  $('.menu .item').tab();
+
    // povolit DropDovn ve formuláři
-   $('.ui.dropdown')
+  $('.ui.dropdown')
     .dropdown()
     ;
-    
+
     // moje zakazky folmulár se odesle po kliknutí na lupu
   $('.search.link.icon')
     .on("click", function () {

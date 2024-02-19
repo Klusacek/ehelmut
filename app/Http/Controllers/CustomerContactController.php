@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerContact;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Models\CustomerContact;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerContactController extends Controller
 {
@@ -28,4 +30,22 @@ class CustomerContactController extends Controller
 
         return redirect()->route('zakazkaDetail', ['id' => $id]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+// poslední zavorka
 }

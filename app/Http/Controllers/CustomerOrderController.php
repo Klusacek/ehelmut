@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CenaOrderModel;
-use Faker\Core\DateTime;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\CustomerOrder;
 use App\Models\CustomerContact;
@@ -91,16 +91,42 @@ class CustomerOrderController extends Controller
         $kontakt        =   CustomerContact::find($id) ; 
         $cenyModel      =   new CenaOrderModel;
         $ceny           =   $cenyModel->Sumarizace($order->orderNum);
+        $poznamky       =   Comment::where('orderNum',$order->orderNum)->get()->sortByDesc('cas');
 
+      
 
     return view ('zakazka_detail', [
         'siteName' => "Detail zakázky $order->orderNum : František",
         'order'   => $order,
         'id'  => $id,
         'kontakt'    => $kontakt,
-        'ceny' => $ceny
+        'ceny' => $ceny,
+        'poznamky'  => $poznamky,
     ]);
+
+    
    }
-   
+
+   function poznamkaNew(Request $request) {
+
+    $request ->validate([
+        'poznamka' =>'required|min:1'
+    ]);
+
+    $id = $request->input('idOrder');
+
+    $poznamka = new Comment([
+        'user'          =>  Auth::user()->id,            // aktuálně přihlášený uživatel
+        'orderNum'      =>  $request->input('orderNum'),
+        'poznamka'      =>  $request->input('poznamka'),
+        'idOrder'       =>  $id
+    ]);
+
+    $poznamka->save();
+
+    return redirect()->route('zakazkaDetail', ['id' => $id]);
+
+   }
+
     // poslední zavorka
 }

@@ -24,19 +24,37 @@
             <x-customer_order_detail :$order :$id :$ceny></x-customer_order_detail>
         </div>
     </div>
-        {{-- poznámky --}}
-    <div class="four wide column"> 
-      <div class="ui top attached tabular menu">
-            <div class="active item">Poznámky k 24320xx</div>
-            <div class="item">Logy k 24320xx</div>
+
+      {{-- poznámky --}}
+      <div class="four wide column"> 
+        <div class="ui tabular menu">
+          <a class="item active" data-tab="first">Poznámky</a>
+          <a class="item" data-tab="second">Logy</a>
       </div>
-       <x-poznamky></x-poznamky>
-        {{-- konec výpisu poznamek --}}
+     
+      <div class="ui tab segment active" data-tab="first">
+          <x-poznamky :$order :$poznamky :$id></x-poznamky>
+      </div>
+      
+      <div class="ui tab segment" data-tab="second">
+         <x-logs></x-logs>
+      </div>
+      {{-- konec výpisu poznamek --}}
+      
     </div>
 
 </div>
 
 
+@if ($errors->any())
+<div class="ui error message">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+      </div>   
 
+@endif
 
 @endsection
