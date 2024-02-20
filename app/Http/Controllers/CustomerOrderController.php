@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CenaOrderModel;
+use App\Models\Sites;
 use App\Models\Comment;
+use App\Models\Developer;
+use App\Models\OrdersTypes;
 use Illuminate\Http\Request;
 use App\Models\CustomerOrder;
+use App\Models\CenaOrderModel;
 use App\Models\CustomerContact;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 
 class CustomerOrderController extends Controller
 {
@@ -87,10 +91,10 @@ class CustomerOrderController extends Controller
     }
 
    function detail($id) {
-        $order          =   CustomerOrder::find($id);
+        $order          =   CustomerOrder::find($id);    
         $kontakt        =   CustomerContact::find($id) ; 
         $cenyModel      =   new CenaOrderModel;
-        $ceny           =   $cenyModel->Sumarizace($order->orderNum);
+        $ceny           =   $cenyModel->sumarizace($order->orderNum);  
         $poznamky       =   Comment::where('orderNum',$order->orderNum)->get()->sortByDesc('cas');
 
       
@@ -127,6 +131,38 @@ class CustomerOrderController extends Controller
     return redirect()->route('zakazkaDetail', ['id' => $id]);
 
    }
+
+   function detailEdit($orderNum) {
+    $order          =   CustomerOrder::where('orderNum', $orderNum)->first();
+    $developers     =   Developer::where('active', 1)->get();
+    $users          =   db::table('users')->select('id','prijmeni')->where('active', 1)->get();
+    $sites          =   Sites::all();
+    $types          =   OrdersTypes::all();
+
+   
+    return view ('zakazka_oprava', [
+        'siteName' => "Zakázka $orderNum oprava : František",
+        'zakazka'   => $order,
+        'developers' => $developers,
+        'users'     =>  $users,
+        'provozovny'  => $sites,
+        'types'  => $types,
+    ]);
+   }
+
+   function detailEditStore($ordernum, Request $request){
+
+        CustomerOrder::where('orderNum',$ordernum)
+                        ->update([
+                            'user' => $request->input('user'),
+                            'druh' => $request->input('druh'),
+                            'provozovna' => $request->input('provozovna'),
+                            'developer' => $request->input('developer'),
+                        ]);
+
+                        return redirect()->back();
+   }
+
 
     // poslední zavorka
 }

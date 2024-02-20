@@ -1,4 +1,3 @@
-
         
 <table class="ui celled striped  table">
 <thead class="full-width">
@@ -20,15 +19,15 @@
 
 <!-- výpis objednávek a doobjednavek včetnĚ cen -->  
        <tr>
-     <td><a href="">{{$order->orderNum}}</a></td>
+     <td><a href="/zakazka/detail_opravit/{{$order->orderNum}}">{{$order->orderNum}}</a></td>
      <td><a href="" class="ui icon red button"><i class="industry icon"></i></a></td>
      <td><a href="">Libor ŠTĚPÁN</a></td>
      <td><a href="">Ateliér Harfa</a></td>
      <td>{{\Carbon\Carbon::parse($order->cas)->format('d.m.Y')}}</td>
      <td><a href="">Kuchyně</a></td>
 @if(isset($ceny))        
-         <td> {{$ceny->prodejDphSum}}  </td>
-         <td><a href="">20 000</a></td>
+         <td> {{Number::format($ceny->prodejDphSum) }}  </td>
+         <td><a href=""></a>{{Number::format(100000)}}</td>
          <td>
           <div class="ui indicating small progress objednano success" 
           data-value="{{$ceny->objednanoCount}}" 

@@ -10,7 +10,7 @@ use Psy\CodeCleaner\IssetPass;
 class CenaOrderModel extends Model
 {
     use HasFactory;
-    public function Sumarizace ($orderNum)  {
+    public function sumarizace ($orderNum)  {
         $ceny                   =   DB::table('sum_customer_order_prices')->where('orderNum', $orderNum)->first();
         // počítej pouze pokud je vráceno něco
         if(isset($ceny)) {                

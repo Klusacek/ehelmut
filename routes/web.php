@@ -45,6 +45,8 @@ Route::post ('zakazka/poznamkaNew', [CustomerOrderController::class, 'poznamkaNe
 
 Route::get ('zakazka/detail/{id}', [CustomerOrderController::class, 'detail'])->middleware('auth')->name('zakazkaDetail');
 Route::post ('zakazka/upravit_kontakt', [CustomerContactController::class, 'update'])->middleware('auth');
+Route::get ('zakazka/detail_opravit/{orderNum}', [CustomerOrderController::class, 'detailEdit'])->middleware('auth')->name('zakazkaDetailEdit');
+Route::post ('zakazka/detail_opravit/{orderNum}', [CustomerOrderController::class, 'detailEditStore'])->middleware('auth');
 
 //Route::get ('zakazka/xml/{id}', [XmlController::class, 'xmlToJson']);
 
